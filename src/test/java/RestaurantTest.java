@@ -67,6 +67,9 @@ class RestaurantTest {
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+
+
+    //>>>>>>>>>>>>>>>>>>>>>ORDER TOTAL <<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
     public void when_no_item_is_selected_the_order_total_should_return_0()
     {
@@ -89,4 +92,5 @@ class RestaurantTest {
         int ordertotal = restaurant.getTotalOrder(item);
         assertEquals(388,ordertotal);
     }
+    //<<<<<<<<<<<<<<<<<<<<<<<<<< ORDER TOTAL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
