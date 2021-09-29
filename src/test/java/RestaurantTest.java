@@ -7,6 +7,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
@@ -23,6 +25,7 @@ class RestaurantTest {
         restaurant.addToMenu("Sweet corn soup",119);
         restaurant.addToMenu("Vegetable lasagne", 269);
     }
+    Item items = new Item("Sizzling brownie",319);
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>OPEN/CLOSED<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     //-------FOR THE 2 TESTS BELOW, YOU MAY USE THE CONCEPT OF MOCKING, IF YOU RUN INTO ANY TROUBLE
@@ -64,4 +67,27 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void when_no_item_is_selected_the_order_total_should_return_0()
+    {
+        List<String> item = Arrays.asList();
+        int ordertotal=restaurant.getTotalOrder(item);
+        assertEquals(0,ordertotal);
+    }
+    @Test
+    public void when_one_item_is_selected_the_order_total_should_return_the_price_of_that_item()
+    {
+        List<String> item = Arrays.asList("Vegetable lasagne");
+
+        int ordertotal= restaurant.getTotalOrder(item);
+        assertEquals(269,ordertotal);
+    }
+    @Test
+    public void when_multiple_items_are_selected_the_order_total_should_return_price_of_all_the_items()
+    {
+        List<String> item = Arrays.asList("Sweet corn soup","Vegetable lasagne");
+        int ordertotal = restaurant.getTotalOrder(item);
+        assertEquals(388,ordertotal);
+    }
 }
